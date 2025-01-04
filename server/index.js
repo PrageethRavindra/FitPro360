@@ -5,4 +5,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(3001, () => console.log('Server running on port 3001'));
+const authRoutes = require('./routes/authRoutes');
+const clientRoutes = require('./routes/clientRoutes');
+const packageRoutes = require('./routes/packageRoutes');
+const trainerRoutes = require('./routes/trainerRoutes');
+
+app.use('/auth', authRoutes);
+app.use('/clients', clientRoutes);
+app.use('/packages', packageRoutes);
+app.use('/trainers', trainerRoutes);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
